@@ -1,0 +1,123 @@
+#-----------------------------------------------------------------------------
+%global		dist	@@DIST@@
+#-----------------------------------------------------------------------------
+Name		:	@@APPN@@
+Version		:	@@VERSION@@.@@RELEASE@@
+Release		:	%{?dist}
+Summary		:	UCSD p-System cross compiler
+
+Packager	:	@@PACKAGER@@
+
+License		:	GPLv2+
+URL		:	https://github.com/jmrcpn/ucsd-psystem-vm/
+
+Source0		:	%{name}-%{version}.tar.gz
+
+#-----------------------------------------------------------------------------
+BuildRequires	:	boost-devel
+BuildRequires	:	libexplain-devel
+BuildRequires	:	meson
+BuildRequires	:	xterm
+
+#-----------------------------------------------------------------------------
+%description
+The ucsd-psystem-xc package is a collection
+of tools for compiling Pascal source files to
+produce UCSD p_System code files.  
+
+The package includes:
+
+ucsdpsys(1)
+       A laucher to run the virtual machine comfortably from the
+       command line.  It includes a batch mode for automating
+       (scripting) operations.
+
+ucsdpsys_assemble(1)
+       The cross assembler.  It is able to assemble several different
+       target microprocessor architectures in the one executable.
+
+ucsdpsys_compile(1)
+       The cross compiler.  It understands the UCSD Pascal dialect,
+       including UNIT definitions and references.
+
+ucsdpsys_depends(1)
+       May be used to determine include file dependencies, for use
+       with make(1) and other build tools.
+
+ucsdpsys_disassemble(1)
+       For disassembling UCSD p-System code files.  This is used to
+       verify the correctness of the compiler.
+
+ucsdpsys_downcase(1)
+       A untility for converting Pascal code to lower case, leaving
+       string constants and comments unaltered.
+
+ucsdpsys_errors(1)
+       A utility to translate back and forth between text and binary
+       representations of the assembler error message files.
+
+ucsdpsys_libmap(1)
+       A utility for printing segment maps of UCSD p-System library
+       files.
+
+ucsdpsys_librarian(1)
+       A utility for manipulating the segments within UCSD p-System
+       codefiles.
+
+ucsdpsys_link(1)
+       A utility for linking UCSD p-System codefiles to their
+       assembler components.
+
+ucsdpsys_opcodes(1)
+       A utility to translate back and forth between text and binary
+       representations of the assembler opcode files.
+
+ucsdpsys_setup(1)
+       A utility to translate back and forth between text and binary
+       representations of the system.miscinfo file.
+
+#-----------------------------------------------------------------------------
+%files
+%defattr(-, root,root, -)
+
+#=============================================================================
+%prep
+%setup -q
+
+#-----------------------------------------------------------------------------
+#building application
+%build
+
+meson	setup						\
+	--prefix=%{_prefix}				\
+        --includedir=%{_includedir}			\
+        --sysconfdir=%{_sysconfdir}			\
+        --sbindir=%{_sbindir}				\
+        --bindir=%{_bindir}				\
+	--mandir=%{_mandir}				\
+	--libdir=%{_libdir}				\
+	--infodir=%{_infodir}				\
+	--datadir=%{_datadir}				\
+	_bld
+
+meson	compile						\
+	-C _bld						\
+
+#-----------------------------------------------------------------------------
+%clean
+%{__rm} -rf %{buildroot}
+
+#-----------------------------------------------------------------------------
+%check
+
+#-----------------------------------------------------------------------------
+#installing program
+%install
+%{__rm} -rf %{buildroot}
+
+meson	install						\
+		-C _bld					\
+		--destdir=%{buildroot}			\
+
+#-----------------------------------------------------------------------------
+%changelog
