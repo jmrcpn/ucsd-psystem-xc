@@ -14,10 +14,11 @@ URL		:	https://github.com/jmrcpn/ucsd-psystem-vm/
 Source0		:	%{name}-%{version}.tar.gz
 
 #-----------------------------------------------------------------------------
+BuildRequires	:	bison
 BuildRequires	:	boost-devel
 BuildRequires	:	libexplain-devel
+BuildRequires	:	libpng-devel
 BuildRequires	:	meson
-BuildRequires	:	xterm
 
 #-----------------------------------------------------------------------------
 %description
@@ -79,6 +80,47 @@ ucsdpsys_setup(1)
 #-----------------------------------------------------------------------------
 %files
 %defattr(-, root,root, -)
+%{_bindir}/ucsdpsys
+%{_bindir}/ucsdpsys_assemble
+%{_bindir}/ucsdpsys_charset
+%{_bindir}/ucsdpsys_compile
+%{_bindir}/ucsdpsys_depends
+%{_bindir}/ucsdpsys_disassemble
+%{_bindir}/ucsdpsys_downcase
+%{_bindir}/ucsdpsys_errors
+%{_bindir}/ucsdpsys_foto
+%{_bindir}/ucsdpsys_libmap
+%{_bindir}/ucsdpsys_librarian
+%{_bindir}/ucsdpsys_link
+%{_bindir}/ucsdpsys_littoral
+%{_bindir}/ucsdpsys_opcodes
+%{_bindir}/ucsdpsys_osmakgen
+%{_bindir}/ucsdpsys_pretty
+%{_bindir}/ucsdpsys_setup
+%{_mandir}/man1/ucsdpsys.1.gz
+%{_mandir}/man1/ucsdpsys_assemble.1.gz
+%{_mandir}/man1/ucsdpsys_charset.1.gz
+%{_mandir}/man1/ucsdpsys_compile.1.gz
+%{_mandir}/man1/ucsdpsys_depends.1.gz
+%{_mandir}/man1/ucsdpsys_disassemble.1.gz
+%{_mandir}/man1/ucsdpsys_downcase.1.gz
+%{_mandir}/man1/ucsdpsys_errors.1.gz
+%{_mandir}/man1/ucsdpsys_foto.1.gz
+%{_mandir}/man1/ucsdpsys_history.1.gz
+%{_mandir}/man1/ucsdpsys_libmap.1.gz
+%{_mandir}/man1/ucsdpsys_librarian.1.gz
+%{_mandir}/man1/ucsdpsys_link.1.gz
+%{_mandir}/man1/ucsdpsys_littoral.1.gz
+%{_mandir}/man1/ucsdpsys_opcodes.1.gz
+%{_mandir}/man1/ucsdpsys_osmakgen.1.gz
+%{_mandir}/man1/ucsdpsys_pretty.1.gz
+%{_mandir}/man1/ucsdpsys_setup.1.gz
+%{_mandir}/man1/ucsdpsys_xc_license.1.gz
+%{_mandir}/man5/ucsdpsys_codefile.5.gz
+%{_mandir}/man5/ucsdpsys_errors.5.gz
+%{_mandir}/man5/ucsdpsys_opcodes.5.gz
+
+
 
 #=============================================================================
 %prep
