@@ -21,11 +21,6 @@ push	:
 
 
 #--------------------------------------------------------------------
-#to update the github site
-github	:  
-	    @ git push --tags $@ $(BR):$(BR)
-
-#--------------------------------------------------------------------
 gitcheck:
 	   @ echo "CURTAG=\"$(CURTAG)\""
 	   @ echo "VERSION=\"$(VERSION)\""
