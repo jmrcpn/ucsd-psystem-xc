@@ -19,6 +19,7 @@ BuildRequires	:	boost-devel
 BuildRequires	:	libexplain-devel
 BuildRequires	:	libpng-devel
 BuildRequires	:	meson
+BuildRequires	:	sharutils
 
 #-----------------------------------------------------------------------------
 %description
@@ -151,6 +152,8 @@ meson	compile						\
 
 #-----------------------------------------------------------------------------
 %check
+meson	test						\
+		-C _bld					\
 
 #-----------------------------------------------------------------------------
 #installing program
